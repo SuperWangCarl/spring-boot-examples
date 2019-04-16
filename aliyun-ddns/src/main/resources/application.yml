@@ -1,0 +1,18 @@
+aliyun-vo:
+  #固定不用改
+  regionId: cn-hangzhou
+  #刚才申请的 AccessKeyID
+  accessKeyId: xxxxx
+  #刚才申请的 AccessKeySecret
+  accessKeySecret: xxxx
+  #你的一级域名
+  domain: xx.xx
+  #你需要配置ddns的二级域名
+  rr:
+  - xxxx
+  - xxx
+  - xx
+  #获取公网ip的连接
+  path: http://xxx.xx.xxx:xxx
+server:
+  port: 9012
