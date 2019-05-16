@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -36,6 +37,7 @@ public class MailSendService {
 	 * @auther: SuperWang
 	 * @date: 2018/8/16 16:34
 	 */
+	@Async
 	public void sendEmail(String toMail, String title, String content) throws MessagingException {
 		final MimeMessage mimeMessage = mailSender.createMimeMessage();
 		final MimeMessageHelper message = new MimeMessageHelper(mimeMessage);
@@ -57,6 +59,7 @@ public class MailSendService {
 	 * @param flies 附件
 	 * @throws Exception
 	 */
+	@Async
 	public void sendSimpleMail(String toMail, String replyTo, String title, String content, List<File> files) throws Exception {
 		final MimeMessage mimeMessage = mailSender.createMimeMessage();
 		final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
@@ -95,6 +98,7 @@ public class MailSendService {
 	 * @param files 附件
 	 * @throws Exception
 	 */
+	@Async
 	public void sendHtmlMail(String toMail, String replyTo, String title, String htmlContent, List<File> files) throws Exception {
 		final MimeMessage mimeMessage = mailSender.createMimeMessage();
 		final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);

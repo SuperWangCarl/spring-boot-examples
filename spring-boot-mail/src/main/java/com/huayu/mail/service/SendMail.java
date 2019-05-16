@@ -3,6 +3,7 @@ package com.huayu.mail.service;
 import com.huayu.mail.bean.Mail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -52,6 +53,7 @@ public class SendMail implements Serializable {
 	 * @创建时间 2017/11/9
 	 * @修改人和其它信息
 	 */
+	@Async
 	public void send(String mailTo, String content, String subject) throws Exception {
 		Message msg = new MimeMessage(session);
 		String nick = mail.getSelfUsername();
