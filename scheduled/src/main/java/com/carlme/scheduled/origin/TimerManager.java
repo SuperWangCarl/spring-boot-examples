@@ -16,15 +16,11 @@ public class TimerManager {
 	// 时间间隔
 	private static final long PERIOD_DAY = 24 * 60 * 60 * 1000;
 
-	public TimerManager() {
-
-	}
 	@PostConstruct
 	public void init(){
 		Calendar calendar = Calendar.getInstance();
 
-		/*** 定制每日00:00执行方法 ***/
-
+		/*** 定制每日08:30执行方法 ***/
 		calendar.set(Calendar.HOUR_OF_DAY,8);
 		calendar.set(Calendar.MINUTE,30);
 		calendar.set(Calendar.SECOND, 0);
@@ -40,7 +36,6 @@ public class TimerManager {
 		Timer timer = new Timer();
 		// 安排指定的任务在指定的时间开始进行重复的固定延迟执行。
 		timer.schedule(reportSynDataTask, date, PERIOD_DAY);
-		// timer.schedule(reportSynDataTask, 5000);
 	}
 
 	// 增加或减少天数
