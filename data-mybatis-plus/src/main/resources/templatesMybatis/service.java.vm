@@ -1,0 +1,57 @@
+package ${package.Service};
+
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+import com.baomidou.mybatisplus.plugins.Page;
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+
+        /**
+	     * 通过id查询
+	     * @param id
+	     * @return
+	     */
+		BaseResult<${entity}Vo> query${entity}(String id);
+
+		/**
+         * 分页查询
+         * @param page
+         * @param searchInfo
+         * @return
+         */
+		BaseResult<Page<${entity}Vo>> query${entity}List(Page page, String searchInfo);
+
+		/**
+         * 添加
+         * @param
+         * @return
+         */
+		BaseResult<${entity}Vo> add${entity}(${entity}Vo ${table.entityPath}Vo);
+
+		/**
+         * 编辑
+         * @param
+         * @return
+         */
+		BaseResult<${entity}Vo> edit${entity}(${entity}Vo ${table.entityPath}Vo);
+
+		/**
+         * 删除
+         * @param id 需要删除的 实体类id
+         * @param userId 删除者的用户id
+         * @return
+         */
+		BaseResult<${entity}Vo> delete${entity}(String id,String userId);
+
+}
+#end

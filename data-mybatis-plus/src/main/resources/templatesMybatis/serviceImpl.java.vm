@@ -1,0 +1,145 @@
+package ${package.ServiceImpl};
+
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import com.hedian.platform.base.BaseResult;
+import com.hedian.platform.constants.CommonConstant;
+import com.hedian.platform.constants.ResultConstant;
+import com.hedian.platform.exception.ExceptionController;
+import com.hedian.platform.utils.DateTimeUtil;
+import com.hedian.platform.utils.JsonUtil;
+import com.hedian.zhenjiang.persistence.mapper.EntprInfoMapper;
+import com.hedian.zhenjiang.persistence.po.EntprInfo;
+import com.hedian.zhenjiang.service.EntprInfoService;
+import com.hedian.zhenjiang.vo.EntprInfoVo;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+@Slf4j
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+
+
+	@Autowired
+	private ExceptionController exceptionController;
+	@Override
+	public BaseResult<${entity}Vo> query${entity}(String id){
+		${entity} ${table.entityPath} = selectById(id);
+		if (${table.entityPath} == null) {
+			return exceptionController.commonResult(ResultConstant.NO_EXIST);
+		}
+
+		${entity}Vo ${table.entityPath}Vo = new ${entity}Vo();
+		BeanUtils.copyProperties(${table.entityPath},${table.entityPath}Vo );
+		return new BaseResult<>(${table.entityPath}Vo);
+    }
+
+    @Override
+    public BaseResult<Page<${entity}Vo>> query${entity}List(Page page, String searchInfo){
+    	//TODO 自定义查询条件
+		Page<${entity}> ${table.entityPath}Page = selectPage(page, new EntityWrapper<${entity}>()
+		        .like(StringUtils.isNotBlank(searchInfo), "", searchInfo, SqlLike.DEFAULT)
+				.orderBy("create_time",false)
+		);
+
+		List<${entity}> ${table.entityPath}List = ${table.entityPath}Page.getRecords();
+		List<${entity}Vo> ${table.entityPath}VoList = new ArrayList<>(100);
+
+		//将实体类转换为 前台需要的VO
+		${table.entityPath}List.forEach(${table.entityPath}->{
+				${entity}Vo ${table.entityPath}Vo = new ${entity}Vo();
+				BeanUtils.copyProperties(${table.entityPath},${table.entityPath}Vo);
+				${table.entityPath}Vo.setCreateTimeStr(DateTimeUtil.formatDateTimetoString(${table.entityPath}.getCreateTime(),"yyyy-MM-dd HH:mm:ss"));
+				${table.entityPath}VoList.add(${table.entityPath}Vo);
+		});
+
+		Page<${entity}Vo> ${table.entityPath}VoPage = new Page<>();
+		BeanUtils.copyProperties(${table.entityPath}Page,${table.entityPath}VoPage);
+		${table.entityPath}VoPage.setRecords(${table.entityPath}VoList);
+		return  new BaseResult<>(${table.entityPath}VoPage);
+    }
+
+    @Override
+    public BaseResult<${entity}Vo> add${entity}(${entity}Vo ${table.entityPath}Vo){
+    	//通过条件查询该实体是否存在
+		//TODO 自定义实体条件 列
+		List<${entity}> ${table.entityPath}s = selectList(new EntityWrapper<${entity}>()
+										.eq("", ${table.entityPath}Vo.getId()));
+
+		if (${table.entityPath}s.size() != 0) {
+			return exceptionController.commonResult(ResultConstant.IS_EXIST);
+		}
+		${entity} ${table.entityPath} = new ${entity}();
+
+		BeanUtils.copyProperties(${table.entityPath}Vo,${table.entityPath});
+		boolean result = insert(${table.entityPath});
+		if(result){
+			log.info("插入成功{}", JsonUtil.Object2JsonString(${table.entityPath}));
+			return new BaseResult<>();
+		}
+		return exceptionController.commonResult(ResultConstant.ADD_FAIL);
+    }
+
+    @Override
+    public BaseResult<${entity}Vo> edit${entity}(${entity}Vo ${table.entityPath}Vo){
+		//查询该 实体是否存在
+		//TODO 获取id
+		${entity} ${table.entityPath} = selectById(${table.entityPath}Vo.getId());
+
+		if (${table.entityPath} == null) {
+			return exceptionController.commonResult(ResultConstant.NO_EXIST);
+		}
+		BeanUtils.copyProperties(${table.entityPath}Vo,${table.entityPath});
+		boolean result = updateById(${table.entityPath});
+		if (result) {
+			log.info("编辑成功{}", JsonUtil.Object2JsonString(${table.entityPath}));
+			return new BaseResult<>();
+		}
+		return exceptionController.commonResult(ResultConstant.EDIT_FAIL);
+    }
+
+    @Override
+    public BaseResult<${entity}Vo> delete${entity}(String id,String userId){
+    	//查询该 实体是否存在
+		${entity} ${table.entityPath} = selectById(id);
+		if (${table.entityPath} == null) {
+			return exceptionController.commonResult(ResultConstant.NO_EXIST);
+		}
+		//修改为删除状态,并添加用户id
+		${table.entityPath}.setUseFlag(CommonConstant.useFlag);
+		${table.entityPath}.setModifiedId(userId);
+
+		boolean result = updateById(${table.entityPath});
+		if (result) {
+			log.info("删除成功{}", JsonUtil.Object2JsonString(${table.entityPath}));
+			return new BaseResult<>();
+		}
+		return exceptionController.commonResult(ResultConstant.DELETE_FAIL);
+    }
+
+
+}
+#end

@@ -14,6 +14,7 @@ public class DynamicDataSourceAspect {
     public void setDynamicDataSource(JoinPoint jp) {
         for(Object o : jp.getArgs()) {
             //处理具体的逻辑 ，根据具体的境况CustomerContextHolder.setCustomerType()选取DataSource
+            //..可以通过注解的方式
         }
     }
 }
