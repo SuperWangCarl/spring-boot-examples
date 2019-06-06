@@ -1,13 +1,13 @@
-package com.carlme.multi.mybatis.aop;
+package com.carlme.multi.mybatisplus;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MybatisAopApplication {
+public class MultiMybatisPlusApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MybatisAopApplication.class, args);
+		SpringApplication.run(MultiMybatisPlusApplication.class, args);
 	}
 
 }

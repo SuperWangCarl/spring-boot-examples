@@ -1,4 +1,4 @@
-package com.carlme.multi.aop;
+package com.carlme.multi.mybatisplus;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MybatisAopApplicationTests {
+public class MultiMybatisPlusApplicationTests {
 
 	@Test
 	public void contextLoads() {

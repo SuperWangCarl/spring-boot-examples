@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MybatisPackApplication {
+public class MultiMybatisPackApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MybatisPackApplication.class, args);
+		SpringApplication.run(MultiMybatisPackApplication.class, args);
 	}
 
 }

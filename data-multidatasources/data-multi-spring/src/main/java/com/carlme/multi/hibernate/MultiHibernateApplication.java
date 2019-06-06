@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HibernateApplication {
+public class MultiHibernateApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HibernateApplication.class, args);
+		SpringApplication.run(MultiHibernateApplication.class, args);
 	}
 
 }

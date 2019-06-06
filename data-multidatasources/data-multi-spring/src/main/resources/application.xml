@@ -1,66 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<context:annotation-config />
-	<context:component-scan base-package="com/report" />  <!-- 自动扫描所有注解该路径 -->
-	<aop:aspectj-autoproxy />
-	<context:property-placeholder  location="classpath:resources/datasource.properties"  ignore-unresolvable="true"/>
-	<!-- 多数据源配置 -->
-	<bean id="dataSource" class="com.carlme.multi.hibernate.datautil.DynamicDataSource">
-	<property name="targetDataSources">
-	<map key-type="java.lang.String">
-	<entry key="defaultdb" value-ref="dataSource1"></entry>
-	<entry key="ah_zy" value-ref="dataSource2"></entry>
-	<entry key="ah_zy_copy" value-ref="dataSource3"></entry>
-	</map>
-	</property>
-	<!-- 默认的 -->
-	<property name="defaultTargetDataSource" ref="dataSource1"></property>
-	</bean>
-	<!-- 数据源 -->
-	<bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-	<property name="driverClass" value="com.mysql.jdbc.Driver" />
-	<property name="jdbcUrl" value="jdbc:mysql://112.73.64.168:3366/server?useUnicode=true&amp;characterEncoding=utf-8" />
-	<property name="user" value="root" />
-	<property name="password" value="Test$$" />
-	<property name="maxPoolSize" value="200"/>
-	<property name="minPoolSize" value="20" />
-	<property name="initialPoolSize" value="20" />
-	<property name="acquireIncrement" value="20" />
-	<property name="maxStatements" value="100" />
-	<property name="idleConnectionTestPeriod" value="120" />
-	</bean>
+    <context:annotation-config/>
+    <context:component-scan base-package="com.carlme"/>  <!-- 自动扫描所有注解该路径 -->
+    <aop:aspectj-autoproxy/>
 
-	<bean id="dataSource2" parent="dataSource1">
-	<property name="jdbcUrl" value="jdbc:mysql://ip:5202/zyjh?useUnicode=true&amp;characterEncoding=utf-8"></property>
-	<property name="password" value="hybj2013ABC" />
-	</bean>
-	<bean id="dataSource3" parent="dataSource1">
-	<property name="jdbcUrl" value="jdbc:mysql://ip:3366/zyjh_ah_copy?useUnicode=true&amp;characterEncoding=utf-8"></property>
-	</bean>
+    <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true"/>
 
-	<!-- 	<property name="jdbcUrl" value="jdbc:mysql://112.73.64.164:3366/client_ah_pt1"></property> -->
+    <!-- 数据源 01 -->
+    <bean id="master" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.master.url}"/>
+        <property name="user" value="${jdbc.master.username}"/>
+        <property name="password" value="${jdbc.master.password}"/>
+        <property name="maxPoolSize" value="${cpool.maxPoolSize}"/>
+        <property name="minPoolSize" value="${cpool.minPoolSize}"/>
+        <property name="initialPoolSize" value="${cpool.initialPoolSize}"/>
+        <property name="acquireIncrement" value="${cpool.acquireIncrement}"/>
+        <property name="maxStatements" value="${cpool.maxStatements}"/>
+        <property name="idleConnectionTestPeriod" value="${cpool.idleConnectionTestPeriod}"/>
+    </bean>
 
-	<!-- 本地会话工程bean，是spring整合hibernate的核心 入口 -->
-	<bean id="sessionFactory"
-	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
-	<property name="dataSource" ref="dataSource" />
-	<property name="hibernateProperties">
-	<props>
-	<prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
-	<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-	<prop key="hibernate.show_sql">true</prop>
-	</props>
-	</property>
-	</bean>
+    <!-- 数据源 02 -->
+    <bean id="slave" parent="master">
+        <property name="jdbcUrl" value="${jdbc.slave.url}"/>
+        <property name="user" value="${jdbc.slave.username}"/>
+        <property name="password" value="${jdbc.slave.password}"/>
+    </bean>
+
+    <!-- 多数据源配置 -->
+    <bean id="dynamicDataSource" class="com.carlme.multi.hibernate.datautil.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="master" value-ref="master"></entry>
+                <entry key="slave" value-ref="slave"></entry>
+            </map>
+        </property>
+        <!-- 默认的 -->
+        <property name="defaultTargetDataSource" ref="master"></property>
+    </bean>
+
+    <!-- JdbcTemplate使用动态数据源的配置 -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource">
+            <ref bean="dynamicDataSource" />
+        </property>
+    </bean>
+
+    <!-- 本地会话工程bean，是spring整合hibernate的核心 入口 -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dynamicDataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- 事务管理 使用Spring的JdbcTemplate的事务管理配置示例: -->
+    <bean id="transactionManager01" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dynamicDataSource" />
+    </bean>
+
+   <!-- <bean id="sqlBaseDAOProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager" ref="transactionManager01" />
+        <property name="target" ref="jd" />
+        <property name="transactionAttributes">
+            <props>
+                <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+            </props>
+        </property>
+    </bean>-->
+
+    <!-- 事务管理 使用Hibernate时的事务管理配置示例: 通过注解的方式 -->
+    <bean id="transactionManager02" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager02"/>
+
 
 </beans>
