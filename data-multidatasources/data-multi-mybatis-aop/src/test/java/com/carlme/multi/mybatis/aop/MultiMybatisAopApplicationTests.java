@@ -1,9 +1,9 @@
-package com.carlme.multi.mybatis.pack;
+package com.carlme.multi.mybatis.aop;
 
-import com.carlme.multi.mybatis.pack.bean.Notice;
-import com.carlme.multi.mybatis.pack.mapper.test01.TransactionMapping1;
-import com.carlme.multi.mybatis.pack.mapper.test02.TransactionMapping2;
-import com.carlme.multi.mybatis.pack.service.TransactionService1;
+import com.carlme.multi.mybatis.aop.bean.Notice;
+import com.carlme.multi.mybatis.aop.mapper.test01.TransactionMapping1;
+import com.carlme.multi.mybatis.aop.mapper.test02.TransactionMapping2;
+import com.carlme.multi.mybatis.aop.service.TransactionService1;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,7 @@ import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MultiMybatisPackApplicationTests {
-
+public class MultiMybatisAopApplicationTests {
 
 	@Autowired
 	private TransactionMapping1 tm1;
@@ -44,7 +43,8 @@ public class MultiMybatisPackApplicationTests {
 	private Notice getNotice() {
 		Notice t = new Notice();
 		t.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-		t.setNoticeName("王老师");
+		t.setNoticeName("老2师");
 		return t;
 	}
+
 }

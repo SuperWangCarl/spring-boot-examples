@@ -10,7 +10,7 @@
     <groupId>com.carlme</groupId>
     <artifactId>多数据源mybatis-plus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>mybatis-plus</name>
+    <name>mybatis-plus-change-datasource</name>
     <description>多数据源mybatis-plus</description>
 
     <properties>
@@ -26,7 +26,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
