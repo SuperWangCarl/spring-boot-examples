@@ -71,19 +71,25 @@ public class MybatisPlusApplicationTests {
 				.setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
 				.setTablePrefix("t_")
 				.setRestControllerStyle(true) //前后端分离生成 restful风格
-				.setInclude("t_common_notice")
-				.setLogicDeleteFieldName("use_flag")
+				.setInclude("t_item", "t_programa", "t_record_activity", "t_record_collect", "t_record_order", "t_record_visit", "t_record_watch", "t_relate", "t_video","t_record_item_0")
+			//	.setLogicDeleteFieldName("use_flag")
 			//	.setSuperControllerClass("com.hedian.platform.base.BaseController") //设置controller的父类
 		;  // 生成的表
 
 		//4. 包名策略配置
 		PackageConfig pkConfig = new PackageConfig();
-		pkConfig.setParent("com.carlme.mybatisplus") //总包名
-				.setMapper("persistence.mapper")	//mapper
+		//pkConfig.setParent("com.carlme.mybatisplus") //总包名
+		//		.setMapper("persistence.mapper")	//mapper
+		//		.setService("service")
+		//		.setController("controller")
+		//		.setEntity("persistence.po")
+		//		.setXml("persistence.mapper.xml")
+		pkConfig.setParent("com.api.mvc") //总包名
+				.setMapper("mapper")	//mapper
 				.setService("service")
 				.setController("controller")
-				.setEntity("persistence.po")
-				.setXml("persistence.mapper.xml")
+				.setEntity("bean")
+				.setXml("mapper.xml")
 		;
 
 		//5.自定义Controller 和 Service  实现了controller和service基本的增删改
