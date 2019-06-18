@@ -14,6 +14,7 @@ public class MultiMybatisPlusApplicationTests {
 
 	@Autowired
 	private CommonNoticeService commonNoticeService;
+
 	@Test
 	public void contextLoads() {
 		CommonNotice commonNotice = new CommonNotice();

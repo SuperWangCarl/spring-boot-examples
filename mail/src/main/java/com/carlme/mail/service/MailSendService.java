@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * 使用springboot集成的mailsender发送邮件
+ *
  * @类名: MailSender<br>
  * @描述: 邮件发送<br>
  */
@@ -49,14 +50,14 @@ public class MailSendService {
 	}
 
 	/**
+	 * @param toMail  收件人，多个用英文格式逗号分隔
+	 * @param replyTo 抄送人，多个用英文格式逗号分隔
+	 * @param title   邮件主题
+	 * @param content 邮件内容
+	 * @param flies   附件
+	 * @throws Exception
 	 * @方法名: sendSimpleMail<br>
 	 * @描述: 发送普通文本格式的邮件<br>
-	 * @param toMail 收件人，多个用英文格式逗号分隔
-	 * @param replyTo 抄送人，多个用英文格式逗号分隔
-	 * @param title 邮件主题
-	 * @param content 邮件内容
-	 * @param flies 附件
-	 * @throws Exception
 	 */
 	//@Async
 	public void sendSimpleMail(String toMail, String replyTo, String title, String content, List<File> files) throws Exception {
@@ -71,14 +72,14 @@ public class MailSendService {
 		helper.setTo(toAddress);
 
 		//设置多个抄送
-		if(StringUtils.isNotBlank(replyTo)) {
+		if (StringUtils.isNotBlank(replyTo)) {
 			//helper.setReplyTo(replyTo);
 			InternetAddress[] internetAddressCC = InternetAddress.parse(replyTo);
 			mimeMessage.setReplyTo(internetAddressCC);
 		}
 
 		//添加附件
-		if(null != files) {
+		if (null != files) {
 			for (File file : files) {
 				helper.addAttachment(file.getName(), file);
 			}
@@ -88,14 +89,14 @@ public class MailSendService {
 	}
 
 	/**
+	 * @param toMail      收件人，多个用英文格式逗号分隔
+	 * @param replyTo     抄送人，多个用英文格式逗号分隔
+	 * @param title       邮件主题
+	 * @param htmlContent 邮件内容
+	 * @param files       附件
+	 * @throws Exception
 	 * @方法名: sendHtmlMail<br>
 	 * @描述: 发送HTML格式的邮件<br>
-	 * @param toMail 收件人，多个用英文格式逗号分隔
-	 * @param replyTo 抄送人，多个用英文格式逗号分隔
-	 * @param title 邮件主题
-	 * @param htmlContent 邮件内容
-	 * @param files 附件
-	 * @throws Exception
 	 */
 	//@Async
 	public void sendHtmlMail(String toMail, String replyTo, String title, String htmlContent, List<File> files) throws Exception {
@@ -110,13 +111,13 @@ public class MailSendService {
 		helper.setTo(toAddress);
 
 		//设置多个抄送
-		if(StringUtils.isNotBlank(replyTo)) {
+		if (StringUtils.isNotBlank(replyTo)) {
 			InternetAddress[] internetAddressCC = InternetAddress.parse(replyTo);
-			mimeMessage.setRecipients(RecipientType.CC,internetAddressCC);
+			mimeMessage.setRecipients(RecipientType.CC, internetAddressCC);
 		}
 
 		//添加附件
-		if(null != files) {
+		if (null != files) {
 			for (File file : files) {
 				helper.addAttachment(file.getName(), file);
 			}

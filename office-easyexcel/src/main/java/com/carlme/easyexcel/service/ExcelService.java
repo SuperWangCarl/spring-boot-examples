@@ -29,6 +29,7 @@ public class ExcelService {
 	/**
 	 * 简单的excel写出
 	 * 表头根据注解生成
+	 *
 	 * @throws Exception
 	 */
 	public void writeExcelSimple() throws Exception {
@@ -57,6 +58,7 @@ public class ExcelService {
 
 	/**
 	 * 表头动态生成
+	 *
 	 * @throws Exception
 	 */
 	public void writeExcelDynamic() throws Exception {
@@ -74,7 +76,7 @@ public class ExcelService {
 		Table table1 = new Table(1);
 
 		// 自定义表格样式
-        table1.setTableStyle(DataUtil.createTableStyle());
+		table1.setTableStyle(DataUtil.createTableStyle());
 
 		// 无注解的模式，动态添加表头
 		table1.setHead(DataUtil.createTestListStringHead());
@@ -93,6 +95,7 @@ public class ExcelService {
 
 	/**
 	 * 多个 sheet写出
+	 *
 	 * @throws Exception
 	 */
 	public void writeExcelMultiSheet() throws Exception {

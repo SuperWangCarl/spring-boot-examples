@@ -69,9 +69,9 @@ public class DDNSTask {
 							@SuppressWarnings("unused")
 							UpdateDomainRecordResponse udr_resp = client.getAcsResponse(udr_req);
 							log.info("二级域名为 : {} , 域名对应ip修改为 : {} ", rr, cur_ip);
-						} else if(!"A".equals(type)){
-							log.info("二级域名为 : {} , 当前记录是 : {} 类型,不是A记录不用修改", rr,type);
-						}else{
+						} else if (!"A".equals(type)) {
+							log.info("二级域名为 : {} , 当前记录是 : {} 类型,不是A记录不用修改", rr, type);
+						} else {
 							log.info("二级域名为 : {} , 无需修改,域名ip为 : {} , 外网ip为 : {}", rr, old_ip, cur_ip);
 						}
 					}

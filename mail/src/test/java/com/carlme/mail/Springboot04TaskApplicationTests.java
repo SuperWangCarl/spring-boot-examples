@@ -33,10 +33,9 @@ public class Springboot04TaskApplicationTests {
 
 	/**
 	 * 使用 自定义的邮件发送方式
-	 *
 	 */
 	@Test
-	public void sendMail() throws Exception{
+	public void sendMail() throws Exception {
 		Mail mail = new Mail();
 		mail.setTo("674949211@qq.com");
 		mail.setSubject("主题");
@@ -50,8 +49,9 @@ public class Springboot04TaskApplicationTests {
 
 	@Test
 	public void contextLoads1() throws MessagingException {
-		mailSendService.sendEmail("674949211@qq.com","465端口","成功");
+		mailSendService.sendEmail("674949211@qq.com", "465端口", "成功");
 	}
+
 	@Test
 	public void contextLoads() {
 		SimpleMailMessage message = new SimpleMailMessage();
@@ -69,20 +69,20 @@ public class Springboot04TaskApplicationTests {
 	}
 
 	@Test
-	public void test02() throws  Exception{
+	public void test02() throws Exception {
 		//1、创建一个复杂的消息邮件
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
 		//邮件设置
 		helper.setSubject("通知-今晚开会");
-		helper.setText("<b style='color:red'>今天 7:30 开会</b>",true);
+		helper.setText("<b style='color:red'>今天 7:30 开会</b>", true);
 
 		helper.setTo("17512080612@163.com");
 		helper.setFrom("534096094@qq.com");
 		//上传文件
-		helper.addAttachment("1.jpg",new File("C:\\Users\\lfy\\Pictures\\Saved Pictures\\1.jpg"));
-		helper.addAttachment("2.jpg",new File("C:\\Users\\lfy\\Pictures\\Saved Pictures\\2.jpg"));
+		helper.addAttachment("1.jpg", new File("C:\\Users\\lfy\\Pictures\\Saved Pictures\\1.jpg"));
+		helper.addAttachment("2.jpg", new File("C:\\Users\\lfy\\Pictures\\Saved Pictures\\2.jpg"));
 
 		mailSender.send(mimeMessage);
 

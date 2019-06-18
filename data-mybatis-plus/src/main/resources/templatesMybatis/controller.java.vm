@@ -51,81 +51,81 @@ import ${superControllerClassPackage};
 class ${table.controllerName}#if(${superControllerClass}) : ${superControllerClass}()#end
 
 #else
-#if(${superControllerClass})
-@Api(tags = "${entity}",description = "$!{table.comment} API")
-@Slf4j
-@BaseLog("$!{table.comment}")
-public class ${table.controllerName} extends ${superControllerClass} {
-#else
-public class ${table.controllerName} {
-#end
+    #if(${superControllerClass})
+	@Api(tags = "${entity}", description = "$!{table.comment} API")
+	@Slf4j
+	@BaseLog("$!{table.comment}")
+	public class ${table.controllerName} extends ${superControllerClass} {
+    #else
+	public class ${table.controllerName} {
+    #end
 
-    @Autowired
-	private ${table.serviceName} ${table.entityPath}Service;
+@Autowired
+private ${table.serviceName} ${table.entityPath}Service;
 
-	/**
-	 * 单个查
-	 */
-	@GetMapping("/query/{id}")
-	@ApiOperation(value = "单个查询", httpMethod = "GET")
-	@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String", paramType = "path")
-	@BaseLog
-	public BaseResult<${entity}Vo> query${entity}(@PathVariable String id) {
-		log.info("query --- query${entity}:{}", id);
+/**
+ * 单个查
+ */
+@GetMapping("/query/{id}")
+@ApiOperation(value = "单个查询", httpMethod = "GET")
+@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String", paramType = "path")
+@BaseLog
+public BaseResult<${entity}Vo> query${entity}(@PathVariable String id){
+		log.info("query --- query${entity}:{}",id);
 		return ${table.entityPath}Service.query${entity}(id);
-	}
+		}
 
-	/**
-	 * 分页查 条件查
-	 */
-	@GetMapping("/page")
-	@ApiOperation(value = "分页查询", httpMethod = "GET")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "index", value = "第几页,默认1",  dataType = "Integer", paramType = "query"),
-			@ApiImplicitParam(name = "size", value = "每页几条数据,默认10",  dataType = "Integer", paramType = "query"),
-			@ApiImplicitParam(name = "searchInfo", value = "搜索信息", dataType = "String", paramType = "query"),
-	})
-	@BaseLog
-	public BaseResult<Page<${entity}Vo>> query${entity}List(@RequestParam(name = "index", defaultValue = "1", required = false) Integer index,
-														@RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
-														@RequestParam(name = "searchInfo", defaultValue = "", required = false) String searchInfo) {
-		log.info("query --- query${entity}List:{}:{}:{}", searchInfo);
-		Page<${entity}Vo> page = new Page<>(index, size);
+/**
+ * 分页查 条件查
+ */
+@GetMapping("/page")
+@ApiOperation(value = "分页查询", httpMethod = "GET")
+@ApiImplicitParams({
+		@ApiImplicitParam(name = "index", value = "第几页,默认1", dataType = "Integer", paramType = "query"),
+		@ApiImplicitParam(name = "size", value = "每页几条数据,默认10", dataType = "Integer", paramType = "query"),
+		@ApiImplicitParam(name = "searchInfo", value = "搜索信息", dataType = "String", paramType = "query"),
+})
+@BaseLog
+public BaseResult<Page<${entity}Vo>>query${entity}List(@RequestParam(name = "index", defaultValue = "1", required = false) Integer index,
+@RequestParam(name = "size", defaultValue = "10", required = false) Integer size,
+@RequestParam(name = "searchInfo", defaultValue = "", required = false) String searchInfo){
+		log.info("query --- query${entity}List:{}:{}:{}",searchInfo);
+		Page<${entity}Vo> page=new Page<>(index,size);
 		return ${table.entityPath}Service.query${entity}List(page,searchInfo);
-	}
-	/**
-	 * 增
-	 */
-	@PostMapping("/add")
-	@ApiOperation(value = "添加", httpMethod = "POST")
-	@BaseLog
-	public BaseResult<${entity}Vo> add${entity}(@RequestBody @Validated(AddGroup.class) ${entity}Vo ${table.entityPath}Vo) {
-		log.info("add --- add${entity}:{}", JsonUtil.Object2JsonString(${table.entityPath}Vo));
-		${table.entityPath}Vo.setCreateId(getUser().getUserId());
+		}
+/**
+ * 增
+ */
+@PostMapping("/add")
+@ApiOperation(value = "添加", httpMethod = "POST")
+@BaseLog
+public BaseResult<${entity}Vo> add${entity}(@RequestBody @Validated(AddGroup.class) ${entity}Vo ${table.entityPath}Vo){
+		log.info("add --- add${entity}:{}",JsonUtil.Object2JsonString(${table.entityPath}Vo));
+    ${table.entityPath}Vo.setCreateId(getUser().getUserId());
 		return ${table.entityPath}Service.add${entity}(${table.entityPath}Vo);
-	}
-	/**
-	 * 改
-	 */
-	@PutMapping("/edit")
-	@ApiOperation(value = "编辑", httpMethod = "PUT")
-	@BaseLog
-	public BaseResult<${entity}Vo> edit${entity}(@RequestBody @Validated(EditGroup.class) ${entity}Vo ${table.entityPath}Vo) {
-		log.info("edit ---edit${entity}:{}", JsonUtil.Object2JsonString(${table.entityPath}Vo));
-		${table.entityPath}Vo.setModifiedId(getUser().getUserId());
+		}
+/**
+ * 改
+ */
+@PutMapping("/edit")
+@ApiOperation(value = "编辑", httpMethod = "PUT")
+@BaseLog
+public BaseResult<${entity}Vo> edit${entity}(@RequestBody @Validated(EditGroup.class) ${entity}Vo ${table.entityPath}Vo){
+		log.info("edit ---edit${entity}:{}",JsonUtil.Object2JsonString(${table.entityPath}Vo));
+    ${table.entityPath}Vo.setModifiedId(getUser().getUserId());
 		return ${table.entityPath}Service.edit${entity}(${table.entityPath}Vo);
-	}
-	/**
-	 * 删
-	 */
-	@DeleteMapping("/delete/{id}")
-	@ApiOperation(value = "删除", httpMethod = "DELETE")
-	@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String", paramType = "path")
-	@BaseLog
-	public BaseResult<${entity}Vo> delete${entity}(@PathVariable String id) {
-		log.info("delete --- delete${entity}:{}", id);
+		}
+/**
+ * 删
+ */
+@DeleteMapping("/delete/{id}")
+@ApiOperation(value = "删除", httpMethod = "DELETE")
+@ApiImplicitParam(name = "id", value = "id", required = true, dataType = "String", paramType = "path")
+@BaseLog
+public BaseResult<${entity}Vo> delete${entity}(@PathVariable String id){
+		log.info("delete --- delete${entity}:{}",id);
 		return ${table.entityPath}Service.delete${entity}(id,getUser().getUserId());
-	}
-}
+		}
+		}
 
 #end

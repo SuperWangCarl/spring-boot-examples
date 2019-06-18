@@ -20,6 +20,7 @@ public class DataSourceConfig2 {
 	public DataSource getDateSource2() {
 		return DataSourceBuilder.create().build();
 	}
+
 	@Bean(name = "test2SqlSessionFactory")
 	public SqlSessionFactory test2SqlSessionFactory(@Qualifier("test2DataSource") DataSource datasource)
 			throws Exception {

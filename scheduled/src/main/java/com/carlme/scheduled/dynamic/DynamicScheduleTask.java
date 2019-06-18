@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 /**
  * 动态
- *
+ * <p>
  * 如果在数据库修改时格式出现错误，则定时任务会停止，即使重新修改正确；此时只能重新启动项目才能恢复。
  */
 @Component
@@ -23,37 +23,37 @@ import java.time.LocalDateTime;
 @EnableScheduling   // 2.开启定时任务
 public class DynamicScheduleTask implements SchedulingConfigurer {
 
-    @Mapper
-    public interface CronMapper {
-        @Select("select cron from cron limit 1")
-        String getCron();
-    }
+	@Mapper
+	public interface CronMapper {
+		@Select("select cron from cron limit 1")
+		String getCron();
+	}
 
-    @Autowired      //注入mapper
-    @SuppressWarnings("all")
-    CronMapper cronMapper;
+	@Autowired      //注入mapper
+	@SuppressWarnings("all")
+	CronMapper cronMapper;
 
-    /**
-     * 执行定时任务.
-     */
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
+	/**
+	 * 执行定时任务.
+	 */
+	@Override
+	public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
 
-        taskRegistrar.addTriggerTask(
-                //1.添加任务内容(Runnable)
-                () -> System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime()),
-                //2.设置执行周期(Trigger)
-                triggerContext -> {
-                    //2.1 从数据库获取执行周期
-                    String cron = cronMapper.getCron();
-                    //2.2 合法性校验.
-                    if (StringUtils.isEmpty(cron)) {
-                        // Omitted Code ..
-                    }
-                    //2.3 返回执行周期(Date)
-                    return new CronTrigger(cron).nextExecutionTime(triggerContext);
-                }
-        );
-    }
+		taskRegistrar.addTriggerTask(
+				//1.添加任务内容(Runnable)
+				() -> System.out.println("执行动态定时任务: " + LocalDateTime.now().toLocalTime()),
+				//2.设置执行周期(Trigger)
+				triggerContext -> {
+					//2.1 从数据库获取执行周期
+					String cron = cronMapper.getCron();
+					//2.2 合法性校验.
+					if (StringUtils.isEmpty(cron)) {
+						// Omitted Code ..
+					}
+					//2.3 返回执行周期(Date)
+					return new CronTrigger(cron).nextExecutionTime(triggerContext);
+				}
+		);
+	}
 
 }

@@ -16,11 +16,11 @@ interface ${table.serviceName} : ${superServiceClass}<${entity}>
 #else
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 
-        /**
-	     * 通过id查询
-	     * @param id
-	     * @return
-	     */
+		/**
+         * 通过id查询
+         * @param id
+         * @return
+         */
 		BaseResult<${entity}Vo> query${entity}(String id);
 
 		/**
@@ -29,7 +29,7 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
          * @param searchInfo
          * @return
          */
-		BaseResult<Page<${entity}Vo>> query${entity}List(Page page, String searchInfo);
+		BaseResult<Page<${entity}Vo>>query${entity}List(Page page,String searchInfo);
 
 		/**
          * 添加
@@ -53,5 +53,5 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
          */
 		BaseResult<${entity}Vo> delete${entity}(String id,String userId);
 
-}
+		}
 #end

@@ -55,7 +55,7 @@ public class DataSourceConfig1 {
 		bean.setMapperLocations(
 				// 设置mybatis的xml所在位置
 				resources
-				);
+		);
 		return bean.getObject();
 	}
 

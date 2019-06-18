@@ -33,7 +33,7 @@ public class DataSourceConfig {
 
 	@Bean(name = "dynamicDataSource")
 	public DynamicDataSource DataSource(@Qualifier("test1DataSource") DataSource test1DataSource,
-			@Qualifier("test2DataSource") DataSource test2DataSource) {
+										@Qualifier("test2DataSource") DataSource test2DataSource) {
 		Map<Object, Object> targetDataSource = new HashMap<>();
 		targetDataSource.put(DbContextHolder.DATA_SOURCE_MASTER, test1DataSource);
 		targetDataSource.put(DbContextHolder.DATA_SOURCE_SLAVE, test2DataSource);

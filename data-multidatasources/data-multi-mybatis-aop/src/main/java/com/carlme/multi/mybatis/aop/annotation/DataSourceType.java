@@ -14,14 +14,14 @@ import java.lang.annotation.Target;
  * @Vsersion: 1.0
  */
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD, ElementType.TYPE})
 @Documented
 public @interface DataSourceType {
 
 	/**
 	 * 数据源
 	 */
-	String value() default  "";
+	String value() default "";
 
 	/**
 	 * 数据源的描述

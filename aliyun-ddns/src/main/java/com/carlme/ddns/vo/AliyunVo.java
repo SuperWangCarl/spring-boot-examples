@@ -14,20 +14,20 @@ import java.util.List;
  * @Date: 2019/4/16 08:52
  * @Vsersion: 0.0.1
  */
-@ConfigurationProperties(prefix="aliyun-vo")
+@ConfigurationProperties(prefix = "aliyun-vo")
 @Data
 @Component
 public class AliyunVo {
 
-	private String regionId ;
+	private String regionId;
 	/**
 	 * 认证id
 	 */
-	private String accessKeyId ;
+	private String accessKeyId;
 	/**
 	 * 认证密钥
 	 */
-	private String accessKeySecret ;
+	private String accessKeySecret;
 	/**
 	 * 一级域名
 	 */
@@ -39,6 +39,6 @@ public class AliyunVo {
 	/**
 	 * 获取当前公网ip的访问地址
 	 */
-	private String path ;
+	private String path;
 
 }

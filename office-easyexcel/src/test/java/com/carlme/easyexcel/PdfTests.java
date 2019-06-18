@@ -18,7 +18,7 @@ public class PdfTests {
 
 
 	@Test
-	public void writePdfSimple() throws Exception{
+	public void writePdfSimple() throws Exception {
 		pdfService.writePdfSimple();
 	}
 

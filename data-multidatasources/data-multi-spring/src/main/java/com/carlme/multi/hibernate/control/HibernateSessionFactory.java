@@ -32,11 +32,11 @@ public class HibernateSessionFactory {
 
 	static {
 		try {
-			Resource resource=new ClassPathResource(configFile);
+			Resource resource = new ClassPathResource(configFile);
 
-			BeanFactory factory=new XmlBeanFactory(resource);
+			BeanFactory factory = new XmlBeanFactory(resource);
 
-			sessionFactory = (SessionFactory)factory.getBean("sessionFactory");
+			sessionFactory = (SessionFactory) factory.getBean("sessionFactory");
 
 			/*configuration.configure(configFile);
 			sessionFactory = configuration.buildSessionFactory();*/
@@ -87,7 +87,6 @@ public class HibernateSessionFactory {
 
 	/**
 	 * Rebuild hibernate session factory
-	 *
 	 */
 	public static void rebuildSessionFactory() {
 		try {
@@ -115,7 +114,6 @@ public class HibernateSessionFactory {
 
 	/**
 	 * return session factory
-	 *
 	 */
 	public static org.hibernate.SessionFactory getSessionFactory() {
 		return sessionFactory;
@@ -123,7 +121,7 @@ public class HibernateSessionFactory {
 
 	/**
 	 * return session factory
-	 *
+	 * <p>
 	 * session factory will be rebuilded in the next call
 	 */
 	public static void setConfigFile(String configFile) {
@@ -133,7 +131,6 @@ public class HibernateSessionFactory {
 
 	/**
 	 * return hibernate configuration
-	 *
 	 */
 	public static Configuration getConfiguration() {
 		return configuration;

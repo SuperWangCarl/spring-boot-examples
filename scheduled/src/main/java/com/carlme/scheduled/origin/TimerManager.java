@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
+
 @Component
 public class TimerManager {
 
@@ -17,12 +18,12 @@ public class TimerManager {
 	private static final long PERIOD_DAY = 24 * 60 * 60 * 1000;
 
 	@PostConstruct
-	public void init(){
+	public void init() {
 		Calendar calendar = Calendar.getInstance();
 
 		/*** 定制每日08:30执行方法 ***/
-		calendar.set(Calendar.HOUR_OF_DAY,8);
-		calendar.set(Calendar.MINUTE,30);
+		calendar.set(Calendar.HOUR_OF_DAY, 8);
+		calendar.set(Calendar.MINUTE, 30);
 		calendar.set(Calendar.SECOND, 0);
 
 		Date date = calendar.getTime(); //  第一次执行定时任务的时间

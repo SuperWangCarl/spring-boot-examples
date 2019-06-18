@@ -14,9 +14,10 @@ public class MybatisApplicationTests {
 
 	@Autowired
 	NoticeMapper noticeMapper;
+
 	@Test
 	public void contextLoads() {
-		Notice notice = noticeMapper.getById("18fdaa43a3f94845be12229ccfcbe12f");
+		Notice notice = noticeMapper.getById("1111111111");
 		System.out.println(notice);
 	}
 

@@ -1,16 +1,11 @@
 package com.carlme.easyexcel.service;
 
 /**
-
-* @Description:    PDF工具
-
-* @Author:         noahw
-
-* @CreateDate:     2019-02-15 17:28
-
-* @Version:        1.0
-
-*/
+ * @Description: PDF工具
+ * @Author: noahw
+ * @CreateDate: 2019-02-15 17:28
+ * @Version: 1.0
+ */
 public class PdfUtils {
 
   /*  public static String turnToPdf(EmergencyAccidentRecord record, String date, String location, String locationPoint, String chemicalName, String typeName, String levelName, String firstAid, String fireProtection

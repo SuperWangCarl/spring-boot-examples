@@ -21,12 +21,12 @@ public class CommonNoticeServiceImpl extends ServiceImpl<CommonNoticeMapper, Com
 
 	@Override
 	public boolean saveMaster(CommonNotice commonNotice) {
-		return 	insert(commonNotice);
+		return insert(commonNotice);
 	}
 
 	@Override
-	@DS("")
+	@DS("slave")
 	public boolean saveSlave(CommonNotice commonNotice) {
-		return 	insert(commonNotice);
+		return insert(commonNotice);
 	}
 }

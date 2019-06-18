@@ -13,27 +13,27 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
 
-    @Bean
-    public RestTemplate restTemplate(){
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate;
-    }
+	@Bean
+	public RestTemplate restTemplate() {
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate;
+	}
 
-    @Bean("urlConnection")
-    public RestTemplate urlConnectionRestTemplate(){
-        RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
-        return restTemplate;
-    }
+	@Bean("urlConnection")
+	public RestTemplate urlConnectionRestTemplate() {
+		RestTemplate restTemplate = new RestTemplate(new SimpleClientHttpRequestFactory());
+		return restTemplate;
+	}
 
-    @Bean("httpClient")
-    public RestTemplate httpClientRestTemplate(){
-        RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-        return restTemplate;
-    }
+	@Bean("httpClient")
+	public RestTemplate httpClientRestTemplate() {
+		RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+		return restTemplate;
+	}
 
-    @Bean("OKHttp3")
-    public RestTemplate OKHttp3RestTemplate(){
-        RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
-        return restTemplate;
-    }
+	@Bean("OKHttp3")
+	public RestTemplate OKHttp3RestTemplate() {
+		RestTemplate restTemplate = new RestTemplate(new OkHttp3ClientHttpRequestFactory());
+		return restTemplate;
+	}
 }

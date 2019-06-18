@@ -15,6 +15,7 @@ public interface CommonNoticeService extends IService<CommonNotice> {
 
 	/**
 	 * 数据保存到master中
+	 *
 	 * @param commonNotice
 	 * @return
 	 */
@@ -22,6 +23,7 @@ public interface CommonNoticeService extends IService<CommonNotice> {
 
 	/**
 	 * 数据保存到slave中
+	 *
 	 * @param commonNotice
 	 * @return
 	 */

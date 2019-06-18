@@ -52,7 +52,7 @@
     <!-- JdbcTemplate使用动态数据源的配置 -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource">
-            <ref bean="dynamicDataSource" />
+            <ref bean="dynamicDataSource"/>
         </property>
     </bean>
 
@@ -71,23 +71,23 @@
 
     <!-- 事务管理 使用Spring的JdbcTemplate的事务管理配置示例: -->
     <bean id="transactionManager01" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dynamicDataSource" />
+        <property name="dataSource" ref="dynamicDataSource"/>
     </bean>
 
-   <!-- <bean id="sqlBaseDAOProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager" ref="transactionManager01" />
-        <property name="target" ref="jd" />
-        <property name="transactionAttributes">
-            <props>
-                <prop key="insert*">PROPAGATION_REQUIRED</prop>
-                <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
-            </props>
-        </property>
-    </bean>-->
+    <!-- <bean id="sqlBaseDAOProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+         <property name="transactionManager" ref="transactionManager01" />
+         <property name="target" ref="jd" />
+         <property name="transactionAttributes">
+             <props>
+                 <prop key="insert*">PROPAGATION_REQUIRED</prop>
+                 <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+             </props>
+         </property>
+     </bean>-->
 
     <!-- 事务管理 使用Hibernate时的事务管理配置示例: 通过注解的方式 -->
     <bean id="transactionManager02" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
     <tx:annotation-driven transaction-manager="transactionManager02"/>

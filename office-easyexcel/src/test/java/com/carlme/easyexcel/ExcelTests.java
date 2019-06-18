@@ -11,33 +11,33 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class ExcelTests {
 
-    @Autowired
-    private ExcelService excelService;
+	@Autowired
+	private ExcelService excelService;
 
-    /**
-     * 表头基于注解
-     */
-    @Test
-    public void writeExcelSimple() throws Exception{
-        excelService.writeExcelSimple();
-    }
+	/**
+	 * 表头基于注解
+	 */
+	@Test
+	public void writeExcelSimple() throws Exception {
+		excelService.writeExcelSimple();
+	}
 
 
-    /**
-     * 表头 动态生成
-     */
-    @Test
-    public void writeExcelDynamic() throws Exception {
-        excelService.writeExcelDynamic();
-    }
+	/**
+	 * 表头 动态生成
+	 */
+	@Test
+	public void writeExcelDynamic() throws Exception {
+		excelService.writeExcelDynamic();
+	}
 
-    /**
-     * 多个sheet写出
-     */
-    @Test
-    public void writeExcelMultiSheet() throws Exception{
-        excelService.writeExcelMultiSheet();
-    }
+	/**
+	 * 多个sheet写出
+	 */
+	@Test
+	public void writeExcelMultiSheet() throws Exception {
+		excelService.writeExcelMultiSheet();
+	}
 
 
 }

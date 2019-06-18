@@ -11,6 +11,7 @@ public class DbContextHolder {
 
 	/**
 	 * 设置当前使用的数据源
+	 *
 	 * @param dbType
 	 */
 	public static void setDbType(String dbType) {
@@ -19,6 +20,7 @@ public class DbContextHolder {
 
 	/**
 	 * 获取当前使用的哪个数据源
+	 *
 	 * @return
 	 */
 	public static String getDbType() {

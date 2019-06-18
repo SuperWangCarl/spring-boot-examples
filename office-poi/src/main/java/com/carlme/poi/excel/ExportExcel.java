@@ -45,17 +45,17 @@ import java.util.regex.Pattern;
  */
 public class ExportExcel<T> {
 	public void exportExcel(Collection<T> dataset, OutputStream out) {
-		exportExcel("测试POI导出EXCEL文档" , null, dataset, out, "yyyy-MM-dd");
+		exportExcel("测试POI导出EXCEL文档", null, dataset, out, "yyyy-MM-dd");
 	}
 
 	public void exportExcel(String[] headers, Collection<T> dataset,
 							OutputStream out) {
-		exportExcel("测试POI导出EXCEL文档" , headers, dataset, out, "yyyy-MM-dd");
+		exportExcel("测试POI导出EXCEL文档", headers, dataset, out, "yyyy-MM-dd");
 	}
 
 	public void exportExcel(String[] headers, Collection<T> dataset,
 							OutputStream out, String pattern) {
-		exportExcel("测试POI导出EXCEL文档" , headers, dataset, out, pattern);
+		exportExcel("测试POI导出EXCEL文档", headers, dataset, out, pattern);
 	}
 
 	/*
@@ -238,15 +238,15 @@ public class ExportExcel<T> {
 		// 测试学生
 		ExportExcel<Student> ex = new ExportExcel<Student>();
 		String[] headers =
-				{"学号" , "姓名" , "年龄" , "性别" , "出生日期"};
+				{"学号", "姓名", "年龄", "性别", "出生日期"};
 		List<Student> dataset = new ArrayList<Student>();
-		dataset.add(new Student(10000001, "张三" , 20, true, new Date()));
-		dataset.add(new Student(20000002, "李四" , 24, false, new Date()));
-		dataset.add(new Student(30000003, "王五" , 22, true, new Date()));
+		dataset.add(new Student(10000001, "张三", 20, true, new Date()));
+		dataset.add(new Student(20000002, "李四", 24, false, new Date()));
+		dataset.add(new Student(30000003, "王五", 22, true, new Date()));
 		// 测试图书
 		ExportExcel<Book> ex2 = new ExportExcel<Book>();
 		String[] headers2 =
-				{"图书编号" , "图书名称" , "图书作者" , "图书价格" , "图书ISBN" , "图书出版社" , "封面图片"};
+				{"图书编号", "图书名称", "图书作者", "图书价格", "图书ISBN", "图书出版社", "封面图片"};
 		List<Book> dataset2 = new ArrayList<Book>();
 		try {
 			BufferedInputStream bis = new BufferedInputStream(
@@ -255,16 +255,16 @@ public class ExportExcel<T> {
 			while ((bis.read(buf)) != -1) {
 
 			}
-			dataset2.add(new Book(1, "jsp" , "leno" , 300.33f, "1234567" ,
-					"清华出版社" , buf));
-			dataset2.add(new Book(2, "java编程思想" , "brucl" , 300.33f, "1234567" ,
-					"阳光出版社" , buf));
-			dataset2.add(new Book(3, "DOM艺术" , "lenotang" , 300.33f, "1234567" ,
-					"清华出版社" , buf));
-			dataset2.add(new Book(4, "c++经典" , "leno" , 400.33f, "1234567" ,
-					"清华出版社" , buf));
-			dataset2.add(new Book(5, "c#入门" , "leno" , 300.33f, "1234567" ,
-					"汤春秀出版社" , buf));
+			dataset2.add(new Book(1, "jsp", "leno", 300.33f, "1234567",
+					"清华出版社", buf));
+			dataset2.add(new Book(2, "java编程思想", "brucl", 300.33f, "1234567",
+					"阳光出版社", buf));
+			dataset2.add(new Book(3, "DOM艺术", "lenotang", 300.33f, "1234567",
+					"清华出版社", buf));
+			dataset2.add(new Book(4, "c++经典", "leno", 400.33f, "1234567",
+					"清华出版社", buf));
+			dataset2.add(new Book(5, "c#入门", "leno", 300.33f, "1234567",
+					"汤春秀出版社", buf));
 			OutputStream out = new FileOutputStream("E://a.xls");
 			OutputStream out2 = new FileOutputStream("E://b.xls");
 			ex.exportExcel(headers, dataset, out);

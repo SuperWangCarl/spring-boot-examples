@@ -5,7 +5,7 @@
 <mapper namespace="com.carlme.mybatis.mapper.NoticeMapper">
 
     <select id="getById" resultType="com.carlme.mybatis.bean.Notice">
-        SELECT * FROM t_common_notice WHERE id=#{id}
+        SELECT * FROM t_common_notice WHERE id=#{i}
     </select>
 
 </mapper>

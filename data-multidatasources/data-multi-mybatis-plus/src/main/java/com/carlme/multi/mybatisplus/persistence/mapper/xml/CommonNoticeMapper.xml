@@ -4,15 +4,15 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.carlme.multi.mybatisplus.persistence.po.CommonNotice">
-        <id column="id" property="id" />
-        <result column="notice_name" property="noticeName" />
-        <result column="create_id" property="createId" />
-        <result column="modified_id" property="modifiedId" />
-        <result column="create_time" property="createTime" />
-        <result column="modified_time" property="modifiedTime" />
-        <result column="comment" property="comment" />
-        <result column="del_flag" property="delFlag" />
-        <result column="use_flag" property="useFlag" />
+        <id column="id" property="id"/>
+        <result column="notice_name" property="noticeName"/>
+        <result column="create_id" property="createId"/>
+        <result column="modified_id" property="modifiedId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="comment" property="comment"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="use_flag" property="useFlag"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
