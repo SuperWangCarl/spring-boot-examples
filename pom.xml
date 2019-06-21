@@ -23,6 +23,7 @@
         <module>office-poi</module>
         <module>rest-template</module>
         <module>scheduled</module>
+        <module>logger</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

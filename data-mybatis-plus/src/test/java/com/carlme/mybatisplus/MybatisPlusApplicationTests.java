@@ -69,8 +69,11 @@ public class MybatisPlusApplicationTests {
 		stConfig.setCapitalMode(true) //全局大写命名
 				.setDbColumnUnderline(true)  // 指定表名 字段名是否使用下划线
 				.setNaming(NamingStrategy.underline_to_camel) // 数据库表映射到实体的命名策略
-				.setTablePrefix("t_")
 				.setRestControllerStyle(true) //前后端分离生成 restful风格
+				.setEntityBuilderModel(true) //构建这模型
+				.setEntityLombokModel(true) //lombok
+				.setControllerMappingHyphenStyle(true) //驼峰转连字符 controller
+				.setTablePrefix("t_")
 				.setInclude("t_item", "t_programa", "t_record_activity", "t_record_collect", "t_record_order", "t_record_visit", "t_record_watch", "t_relate", "t_video", "t_record_item_0")
 		//	.setLogicDeleteFieldName("use_flag")
 		//	.setSuperControllerClass("com.hedian.platform.base.BaseController") //设置controller的父类
@@ -94,11 +97,11 @@ public class MybatisPlusApplicationTests {
 		;
 
 		//5.自定义Controller 和 Service  实现了controller和service基本的增删改
-		TemplateConfig tc = new TemplateConfig();
+		TemplateConfig tc = new TemplateConfig()
 		//tc.setController("/templatesMybatis/controller.java.vm")
 		//		.setService("/templatesMybatis/service.java.vm")
 		//		.setServiceImpl("/templatesMybatis/serviceImpl.java.vm")
-		//;
+		;
 
 		//6. 整合配置
 		AutoGenerator ag = new AutoGenerator();
