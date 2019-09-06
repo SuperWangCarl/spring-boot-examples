@@ -18,7 +18,7 @@ public class MultiMybatisPlusApplicationTests {
 	@Test
 	public void contextLoads() {
 		CommonNotice commonNotice = new CommonNotice();
-		commonNotice.setId("1111111111");
+		commonNotice.setId("11111221");
 		commonNotice.setNoticeName("master");
 		commonNoticeService.saveMaster(commonNotice);
 		commonNotice.setNoticeName("slave");

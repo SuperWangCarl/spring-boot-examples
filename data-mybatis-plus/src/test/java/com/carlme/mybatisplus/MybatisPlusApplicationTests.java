@@ -74,21 +74,22 @@ public class MybatisPlusApplicationTests {
 				.setEntityLombokModel(true) //lombok
 				.setControllerMappingHyphenStyle(true) //驼峰转连字符 controller
 				.setTablePrefix("t_")
-				.setInclude("t_item", "t_programa", "t_record_activity", "t_record_collect", "t_record_order", "t_record_visit", "t_record_watch", "t_relate", "t_video", "t_record_item_0")
-		//	.setLogicDeleteFieldName("use_flag")
-		//	.setSuperControllerClass("com.hedian.platform.base.BaseController") //设置controller的父类
+				.setInclude("t_item")
+				//		.setLogicDeleteFieldName("use_flag")
+				.setSuperControllerClass("com.api.common.base.BaseController")
+
 		;  // 生成的表
 
 		//4. 包名策略配置
 		PackageConfig pkConfig = new PackageConfig();
-		//pkConfig.setParent("com.carlme.mybatisplus") //总包名
-		//		.setMapper("persistence.mapper")	//mapper
+		//pkConfig.setParent("com.hedian.zhenjiang")
+		//		.setMapper("persistence.mapper")
 		//		.setService("service")
 		//		.setController("controller")
 		//		.setEntity("persistence.po")
 		//		.setXml("persistence.mapper.xml")
 
-		pkConfig.setParent("com.api.mvc") //总包名
+		pkConfig.setParent("com.admin.mvc") //总包名
 				.setMapper("mapper")    //mapper
 				.setService("service")
 				.setController("controller")
