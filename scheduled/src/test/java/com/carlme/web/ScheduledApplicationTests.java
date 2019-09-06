@@ -1,4 +1,4 @@
-package com.carlme.scheduled;
+package com.carlme.web;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

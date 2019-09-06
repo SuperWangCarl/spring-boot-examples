@@ -1,13 +1,13 @@
-package com.carlme.scheduled;
+package com.carlme.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ScheduledApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ScheduledApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 }

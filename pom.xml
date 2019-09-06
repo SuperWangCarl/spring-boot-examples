@@ -24,6 +24,7 @@
         <module>rest-template</module>
         <module>scheduled</module>
         <module>logger</module>
+        <module>springboot-web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

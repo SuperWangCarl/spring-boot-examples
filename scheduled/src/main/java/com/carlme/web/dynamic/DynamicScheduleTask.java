@@ -1,4 +1,4 @@
-package com.carlme.scheduled.dynamic;
+package com.carlme.web.dynamic;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;

@@ -1,4 +1,4 @@
-package com.carlme.scheduled.state;
+package com.carlme.web.state;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;

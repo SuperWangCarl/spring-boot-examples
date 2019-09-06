@@ -50,7 +50,7 @@
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 添加.gz 每天一归档 历史日志会启用压缩 大大缩小日志文件所占空间 -->
-            <fileNamePattern>${LOG_PATH}${LOG_FILE}.%d{yyyy-MM-dd-hh-mm}-%i.gz</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}${LOG_FILE}.%d{yyyy-MM-dd}-%i.gz</fileNamePattern>
             <maxHistory>${maxHistory}</maxHistory><!--  保留30天日志 -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>${maxFileSize}</maxFileSize>
@@ -71,7 +71,7 @@
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 添加.gz 每天一归档 历史日志会启用压缩 大大缩小日志文件所占空间 -->
-            <fileNamePattern>${LOG_PATH}${LOG_ERROR}.%d{yyyy-MM-dd-hh-mm}-%i.gz</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}${LOG_ERROR}.%d{yyyy-MM-dd}-%i.gz</fileNamePattern>
             <maxHistory>${maxHistory}</maxHistory><!--  保留30天日志 -->
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>${maxFileSize}</maxFileSize>

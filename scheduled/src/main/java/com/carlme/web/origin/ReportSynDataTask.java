@@ -1,4 +1,4 @@
-package com.carlme.scheduled.origin;
+package com.carlme.web.origin;
 
 import org.springframework.stereotype.Component;
 

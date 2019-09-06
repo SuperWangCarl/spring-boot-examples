@@ -1,4 +1,4 @@
-package com.carlme.scheduled.multithreading;
+package com.carlme.web.multithreading;
 
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;

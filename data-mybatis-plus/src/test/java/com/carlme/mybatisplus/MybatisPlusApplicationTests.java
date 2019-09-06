@@ -74,7 +74,7 @@ public class MybatisPlusApplicationTests {
 				.setEntityLombokModel(true) //lombok
 				.setControllerMappingHyphenStyle(true) //驼峰转连字符 controller
 				.setTablePrefix("t_")
-				.setInclude("t_item")
+				.setInclude("t_record_order")
 				//		.setLogicDeleteFieldName("use_flag")
 				.setSuperControllerClass("com.api.common.base.BaseController")
 
